@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Création d'une api qui simule un cinéma lié avec des films 🙂",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/Xelame/ApiRestCinemaFictif/issues"
   },
-  "homepage": "https://github.com/Xelame/ApiRestCinemaFictif#readme"
+  "homepage": "https://github.com/Xelame/ApiRestCinemaFictif#readme",
+  "dependencies": {
+    "@hono/node-server": "^1.3.1",
+    "dotenv": "^16.3.1",
+    "hono": "^3.11.1",
+    "nodemon": "^3.0.2",
+    "prisma": "^5.6.0"
+  }
 }
