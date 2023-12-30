@@ -2,12 +2,12 @@
   "name": "monalternancefacile",
   "version": "1.0.0",
   "description": "",
-  
   "scripts": {
-    "start": "node dist/app.js",
-    "build": "tsc",
-    "dev": "nodemon src/app.ts"
+    "clear": "rm -rf dist",
+    "build" : "bun build index.ts --outDir ./dist",
+    "dev": "bun --watch index.ts"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Xelame/MonAlternanceFacile.git"
@@ -21,13 +21,17 @@
   "homepage": "https://github.com/Xelame/MonAlternanceFacile#readme",
   "dependencies": {
     "@hono/node-server": "^1.3.1",
-    "hono": "^3.11.2",
+    "@prisma/client": "^5.7.1",
+    "hono": "^3.11.11",
     "nodemon": "^3.0.2"
   },
   "devDependencies": {
     "@types/node": "^20.10.3",
-    "prisma": "^5.6.0",
+    "prisma": "^5.7.1",
     "ts-node": "^10.9.1",
-    "typescript": "^5.3.2"
-  }
+    "typescript": "^5.3.2",
+    "bun-types": "latest"
+  },
+  "module": "index.ts",
+  "type": "module"
 }

@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email     String?  @unique
+}
+
+model Movie {
+  id        String      @id @default(auto()) @map("_id") @db.ObjectId
+  idTmdb    Int         @unique
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  title     String?
+  year      Int?
+  rating    Float?
+  backdrop  String?
+  poster    String?
+  overview  String?
+  active    Boolean     @default(true)
+  Screening Screening[]
+}
+
+model Cinema {
+  id        String      @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  name      String
+  latitude  Float
+  longitude Float
+  active    Boolean     @default(true)
+  Screening Screening[]
+}
+
+model Screening {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  movie     Movie?   @relation(fields: [movieId], references: [id])
+  movieId   String?  @db.ObjectId
+  cinema    Cinema?  @relation(fields: [cinemaId], references: [id])
+  cinemaId  String?  @db.ObjectId
+  date      DateTime
+  active    Boolean  @default(true)
+}
