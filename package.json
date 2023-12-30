@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "clear": "rm -rf dist",
-    "build" : "bun build index.ts --outDir ./dist",
-    "dev": "bun --watch index.ts"
+
+    "start" : "bun index.ts",
+    "dev": "bun --hot index.ts"
   },
 
   "repository": {
