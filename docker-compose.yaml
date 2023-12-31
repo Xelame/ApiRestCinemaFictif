@@ -7,7 +7,7 @@ services:
     environment:
       MONGODB_INITDB_ROOT_USERNAME: mongo
       MONGODB_INITDB_ROOT_PASSWORD: example
-      MONGODB_INITDB_DATABASE: mydb
+      MONGODB_INITDB_DATABASE: mongo
       MONGODB_REPLICA_HOST: localhost
       MONGODB_REPLICA_PORT: 27017
     ports: 
