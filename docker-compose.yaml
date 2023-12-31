@@ -1,14 +1,21 @@
 version: '3.1'
 
-services:
-  mongo:
-    build: ./mongodb_rs
-    restart: always
+mongo:
+    build:
+      context: ./mongodb_rs
+      args:
+        MONGO_VERSION: 4
     environment:
-      MONGO_INITDB_ROOT_USERNAME: mongo
-      MONGO_INITDB_ROOT_PASSWORD: example
-      MONGO_INITDB_DATABASE: mongo
-      MONGO_REPLICA_HOST: localhost
-      MONGO_REPLICA_PORT: 27017
-    ports: 
-      - '27017:27017'
+      MONGO_REPLICA_HOST: 127.0.0.1
+      MONGO_REPLICA_PORT: 27018
+      # Use "mongo" instead of "mongosh" before v5.0
+      MONGO_COMMAND: 'mongo'
+    ports:
+      - '27018:27018'
+    restart: unless-stopped
+    healthcheck:
+      # Use "mongo" instead of "mongosh" before v5.0
+      test: ['CMD', 'mongo', 'admin', '--port', '27018', '--eval', "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 2s
+      retries: 20
