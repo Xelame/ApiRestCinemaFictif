@@ -8,4 +8,6 @@ COPY . .
 
 ENV NODE_ENV production
 
+RUN bunx prisma generate 
+
 CMD [ "bun", "start" ]
