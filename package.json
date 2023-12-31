@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-
-    "start" : "bunx prisma generate && bun install && bun index.ts",
+    "start" : "bun index.ts",
     "dev": "bun --hot index.ts"
   },
 
@@ -28,7 +27,6 @@
   "devDependencies": {
     "@types/node": "^20.10.3",
     "prisma": "^5.7.1",
-    "ts-node": "^10.9.1",
     "typescript": "^5.3.2",
     "bun-types": "latest"
   },
