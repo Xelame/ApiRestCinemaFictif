@@ -7,6 +7,8 @@ COPY package*.json bun.lockb ./
 COPY prisma ./prisma
 
 RUN bun install
+RUN bunx prisma db pull --force
+RUN bunx prisma generate
 
 COPY . .
 
