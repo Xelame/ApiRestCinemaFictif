@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json bun.lockb ./
 
-RUN bun install --production
+RUN bun install
 
 RUN bunx prisma generate
 
