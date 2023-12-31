@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
 
-    "start" : "bun index.ts",
+    "start" : "bun install && bunx prisma generate && bun index.ts",
     "dev": "bun --hot index.ts"
   },
 
