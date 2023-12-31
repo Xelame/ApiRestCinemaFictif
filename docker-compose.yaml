@@ -1,21 +1,24 @@
-version: '3.1'
+version: '3.8'
+
+name: prisma-prisma
+
 services:
-  mongo:
-      build:
-        context: ./mongodb_rs
-        args:
-          MONGO_VERSION: 4
-      environment:
-        MONGO_REPLICA_HOST: 127.0.0.1
-        MONGO_REPLICA_PORT: 27018
-        # Use "mongo" instead of "mongosh" before v5.0
-        MONGO_COMMAND: 'mongo'
-      ports:
-        - '27018:27018'
-      restart: unless-stopped
-      healthcheck:
-        # Use "mongo" instead of "mongosh" before v5.0
-        test: ['CMD', 'mongo', 'admin', '--port', '27018', '--eval', "db.adminCommand('ping').ok"]
-        interval: 5s
-        timeout: 2s
-        retries: 20
+  mongo6:
+    build:
+      context: ./mongodb_rs
+      args:
+        MONGO_VERSION: 6
+    environment:
+      MONGO_REPLICA_HOST: 127.0.0.1
+      MONGO_REPLICA_PORT: 27019
+      # Use "mongo" instead of "mongosh" before v5.0
+      MONGO_COMMAND: 'mongosh'
+    ports:
+      - '27019:27019'
+    restart: unless-stopped
+    healthcheck:
+      # Use "mongo" instead of "mongosh" before v5.0
+      test: ['CMD', 'mongosh', 'admin', '--port', '27019', '--eval', "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 2s
+      retries: 20
