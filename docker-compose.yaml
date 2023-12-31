@@ -5,10 +5,10 @@ services:
     build: ./mongodb_rs
     restart: always
     environment:
-      MONGODB_INITDB_ROOT_USERNAME: mongo
-      MONGODB_INITDB_ROOT_PASSWORD: example
-      MONGODB_INITDB_DATABASE: mongo
-      MONGODB_REPLICA_HOST: localhost
-      MONGODB_REPLICA_PORT: 27017
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: mongo
+      MONGO_REPLICA_HOST: localhost
+      MONGO_REPLICA_PORT: 27017
     ports: 
       - '27017:27017'
