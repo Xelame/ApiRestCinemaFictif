@@ -10,8 +10,6 @@ COPY . .
 
 ENV NODE_ENV production
 
-RUN bunx prisma generate 
-
 RUN bun install
 
 CMD [ "bun", "start" ]
