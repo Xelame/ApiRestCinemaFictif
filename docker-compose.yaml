@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+  mongo:
+    build: ./mongodb_rs
+    restart: always
+    environment:
+      MONGODB_INITDB_ROOT_USERNAME: mongo
+      MONGODB_INITDB_ROOT_PASSWORD: example
+      MONGODB_INITDB_DATABASE: mydb
+      MONGODB_REPLICA_HOST: localhost
+      MONGODB_REPLICA_PORT: 27017
+    ports: 
+      - '27017:27017'
