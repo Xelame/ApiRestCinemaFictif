@@ -10,7 +10,7 @@ const app = new Hono();
 
 const token = process.env.SECRET!;
 
-app.use('*', bearerAuth({ token }))
+// app.use('*', bearerAuth({ token }))
 
 app.use('*', compress())
 
