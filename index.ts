@@ -2,19 +2,15 @@ import { Hono } from "hono";
 import movieRooter from "./routes/movie";
 import cinemaRooter from "./routes/cinema";
 import { compress } from "hono/compress";
-import { jwt } from "hono/jwt";
+import { bearerAuth } from "hono/bearer-auth";
+
 
 const app = new Hono();
 
-app.use(
-    '*',
-    (c, next) => {
-      const jwtMiddleware = jwt({
-        secret: process.env.JWT_SECRET!,
-      })
-      return jwtMiddleware(c, next)
-    }
-  )
+
+const token = process.env.SECRET!;
+
+app.use('*', bearerAuth({ token }))
 
 app.use('*', compress())
 
