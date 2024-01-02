@@ -1,6 +1,8 @@
 import { PrismaClient } from "@prisma/client";
+import { getRoute, logger } from "../middlewares/logger";
 
 const prisma = new PrismaClient();
+
 
 const urlSrcImg = (path: string) => `https://image.tmdb.org/t/p/original/${path}`;
 
@@ -18,6 +20,7 @@ const options = (method: string) => {
 
 
 export const getfilmDisplayed = async (c: any) => {
+    const route = getRoute(c);
     const listOfFilm: any = await (await fetch(urlNowPlaying, options('GET'))).json()
     for (let i = 0; i < listOfFilm.results.length; i++) {
         const movie = listOfFilm.results[i];
@@ -28,7 +31,7 @@ export const getfilmDisplayed = async (c: any) => {
             }
         });
         if (!movieExists) {
-            await prisma.movie.create({
+            const response = await prisma.movie.create({
                 data: {
                     idTmdb: id,
                     title: title,
@@ -37,7 +40,9 @@ export const getfilmDisplayed = async (c: any) => {
                     backdrop: urlSrcImg(backdrop_path),
                 }
             })
+            logger.info(`${route} - ${response}`);
         }
     }
+    
     return c.json({ message: "Update finished" })
 }
